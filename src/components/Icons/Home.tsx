@@ -1,0 +1,22 @@
+import { SVG } from "@/types/svg";
+
+const Home = ({ size = 20, className }: SVG) => {
+  return (
+    <svg
+      style={{ width: `${size}px`, height: `${size}px` }}
+      viewBox="0 0 24 24"
+      width="24px"
+      height="24px"
+      className={className}
+      aria-hidden="true"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M11.889 3.542a.25.25 0 0 0-.278 0l-8 5.333a.25.25 0 0 0-.111.208v10.465c0 .138.112.25.25.25h16a.25.25 0 0 0 .25-.25V9.083a.25.25 0 0 0-.111-.208zm-1.11-1.248a1.75 1.75 0 0 1 1.942 0l8 5.333c.487.325.779.871.779 1.456v10.465a1.75 1.75 0 0 1-1.75 1.75h-16A1.75 1.75 0 0 1 2 19.548V9.083c0-.585.292-1.131.78-1.456z"
+      ></path>
+    </svg>
+  );
+};
+
+export default Home;
