@@ -9,11 +9,26 @@ const ModernGlobe = () => {
   const [hoveredHotel, setHoveredHotel] = useState<any | null>(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const [countries, setCountries] = useState([]);
+  const [globeSize, setGlobeSize] = useState({ width: 1200, height: 500 });
 
   useEffect(() => {
     fetch('/countries.geojson')
       .then((res) => res.json())
       .then((data) => setCountries(data.features));
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newWidth = Math.min(1200, window.innerWidth - 40);
+      setGlobeSize({
+        width: newWidth,
+        height: Math.min(500, newWidth * 0.6)
+      });
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -82,7 +97,7 @@ const ModernGlobe = () => {
   }, []);
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+    <section className="py-16 px-4 bg-blue-50 rounded-lg">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-3">Interactive Global Hotel Explorer</h2>
@@ -104,7 +119,7 @@ const ModernGlobe = () => {
         >
           <Globe
             ref={globeEl}
-            width={1200}
+            width={globeSize.width}
             height={500}
             backgroundColor="rgba(0,0,0,0)"
             showAtmosphere={false}

@@ -6,6 +6,14 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Globe from "@/components/Icons/Globe";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs";
 import { tabValues } from "@/constants/tab";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Navbar = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -32,45 +40,91 @@ const Navbar = () => {
       <nav className="max-w-6xl mx-auto flex justify-between items-center py-4 px-[15px]">
         {/* Logo */}
         <motion.div
-          className="flex items-center"
+          className="flex md:hidden items-center space-x-3 max-w-[12rem]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <a href="/" className="flex items-center">
+          {/* Sheet trigger (menu) */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <Menu size={28} />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-64 sm:w-80">
+              <SheetHeader>
+                <SheetTitle className="text-lg">Menu</SheetTitle>
+              </SheetHeader>
+              <div className="mt-6 flex flex-col space-y-4 text-base font-medium">
+                <a href="#" className="hover:text-tripadvisor-darkGreen">
+                  Discover
+                </a>
+                <a href="#" className="hover:text-tripadvisor-darkGreen">
+                  Trips
+                </a>
+                <a href="#" className="hover:text-tripadvisor-darkGreen">
+                  Review
+                </a>
+                <a href="#" className="hover:text-tripadvisor-darkGreen">
+                  More
+                </a>
+              </div>
+            </SheetContent>
+          </Sheet>
+
+          {/* Logo */}
+          <a href="/" className="flex items-center max-w-[3rem]">
             <img
-              src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg"
-              width={190}
-              height={40}
+              src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logoset_solid_green.svg"
             />
+          </a>
+        </motion.div>
+        <motion.div
+          className="hidden md:flex items-center max-w-[12rem]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <a href="/" className="flex items-center w-full">
+            <img src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_lockup_horizontal_secondary_registered.svg" />
           </a>
         </motion.div>
 
         {/* Search Bar */}
         <motion.div
-          className={`${
-            hasScrolled ? "flex w-[35%] ring-2" : "hidden w-0"
-          } h-10 mx-auto rounded-full bg-transparent ring-gray-300 shadow-lg shadow-gray-300 items-center transition-all duration-100`}
+          className={`hidden ${
+            hasScrolled ? "sm:flex" : "hidden"
+          } w-fit sm:w-full h-10 mx-2 md:mx-4 rounded-full ring-1 ring-gray-300 shadow-lg shadow-gray-300 items-center transition-all duration-100 overflow-hidden`}
           initial={{ opacity: 0 }}
-          animate={{ opacity: hasScrolled ? 1 : 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          animate={{
+            opacity: hasScrolled ? 1 : 0,
+            width: hasScrolled ? "calc(100% - 2rem)" : "0px", // 2rem = mx-4 (1rem each side)
+          }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
         >
-          <div className="w-full relative flex overflow-hidden ml-3 mr-1">
+          {/* Mobile - Search Icon Only (hidden above sm) */}
+          <div className="sm:hidden flex items-center justify-center w-10 h-10">
+            <Search size={24} className="text-tripadvisor-darkGray" />
+          </div>
+
+          {/* Desktop - Full Search Input (hidden below sm) */}
+          <div className="hidden sm:flex w-full items-center">
             <Search
               size={24}
-              className="absolute left-0 top-1/2 -translate-y-1/2 text-tripadvisor-darkGray"
+              className="ml-3 text-tripadvisor-darkGray flex-shrink-0"
             />
             <input
               type="text"
-              placeholder="Search..."
-              className="ml-3 flex-grow py-3 px-5 outline-none text-sm placeholder:text-sm bg-transparent"
+              placeholder="Where to?"
+              className="ml-3 flex-grow py-2 px-2 outline-none text-sm placeholder:text-sm bg-transparent"
             />
           </div>
         </motion.div>
 
         {/* Navigation Links */}
         <motion.div
-          className="hidden md:flex space-x-6 text-[16px] font-medium"
+          className="hidden lg:flex space-x-6 text-[16px] font-medium"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
@@ -157,7 +211,6 @@ const Navbar = () => {
               </div>
             </DialogContent>
           </Dialog>
-
         </motion.div>
       </nav>
 

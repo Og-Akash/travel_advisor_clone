@@ -148,7 +148,7 @@
 }
 
 .search-button {
-  @apply bg-tripadvisor-green text-black rounded-full px-[22px] py-[10px] text-[15px] font-medium hover:bg-opacity-70 transition-colors;
+  @apply bg-tripadvisor-green text-black rounded-full px-[22px] py-[14px] text-[15px] font-medium hover:bg-opacity-70 transition-colors;
 }
 
 .tab-button {

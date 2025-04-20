@@ -1,4 +1,3 @@
-import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -15,9 +14,14 @@ import {
 import { countries, currencies } from "@/constants/options";
 import { legalLinks, sections } from "@/constants/footerLinks";
 import { Link } from "react-router-dom";
+import Facebook from "./Icons/FaceBook";
+import Twitter from "./Icons/Twitter";
+import Instagram from "./Icons/Instagram";
+import Youtube from "./Icons/Youtube";
+import Pintrest from "./Icons/Pintrest";
+import Tiktok from "./Icons/Tiktok";
 
 const Footer = () => {
-
   return (
     <footer className="bg-tripadvisor-gray py-8 border-t mt-16">
       <div className="max-w-6xl mx-auto px-4">
@@ -33,7 +37,10 @@ const Footer = () => {
                   <ul className="space-y-1 py-2">
                     {sec.links.map((link) => (
                       <li key={link}>
-                        <a href="#" className="text-sm text-gray-600 hover:underline">
+                        <a
+                          href="#"
+                          className="text-sm text-gray-600 hover:underline"
+                        >
                           {link}
                         </a>
                       </li>
@@ -74,11 +81,17 @@ const Footer = () => {
 
           {/* Social icons */}
           <div className="flex justify-center gap-6 mb-6">
-            {[Facebook, Twitter, Instagram, Youtube].map((Icon, idx) => (
-              <a key={idx} href="#" className="text-gray-600 hover:text-gray-900">
-                <Icon className="h-6 w-6" />
-              </a>
-            ))}
+            {[Facebook, Twitter, Instagram, Youtube, Pintrest, Tiktok].map(
+              (Icon, idx) => (
+                <a
+                  key={idx}
+                  href="#"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  <Icon />
+                </a>
+              )
+            )}
           </div>
 
           {/* Legal & logo */}
@@ -99,10 +112,10 @@ const Footer = () => {
               ))}
             </div>
             <p className="mt-2 px-2">
-              This is the version of our website addressed to speakers of English
-              in the United States. If you are a resident of another country or region,
-              please select the appropriate version of Tripadvisor for your country
-              or region in the drop-down menu.{" "}
+              This is the version of our website addressed to speakers of
+              English in the United States. If you are a resident of another
+              country or region, please select the appropriate version of
+              Tripadvisor for your country or region in the drop-down menu.{" "}
               <button className="text-black font-medium">Show more</button>
             </p>
           </div>
@@ -110,7 +123,7 @@ const Footer = () => {
 
         {/* Desktop: grid */}
         <div
-          className="hidden md:grid gap-8 mb-8"
+          className="hidden md:grid gap-8 mb-4 tracking-tighter"
           style={{
             gridTemplateAreas: `
               "links1 links2 links3 . partners partners"
@@ -123,11 +136,16 @@ const Footer = () => {
           {/* map the first 3 sections */}
           {sections.slice(0, 3).map((sec, i) => (
             <div key={sec.title} style={{ gridArea: `links${i + 1}` }}>
-              <h3 className="text-sm font-bold mb-4 text-gray-900">{sec.title}</h3>
-              <ul className="space-y-1">
+              <h3 className="text-sm font-bold mb-4 text-gray-900">
+                {sec.title}
+              </h3>
+              <ul className="">
                 {sec.links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-sm text-gray-600 hover:underline">
+                    <a
+                      href="#"
+                      className="text-sm text-gray-600 hover:underline"
+                    >
                       {link}
                     </a>
                   </li>
@@ -136,9 +154,11 @@ const Footer = () => {
             </div>
           ))}
 
-          {/* Get The App */}
+          {/* Get The App
           <div style={{ gridArea: "links3" }}>
-            <h3 className="text-sm font-bold mb-4 text-gray-900">Get The App</h3>
+            <h3 className="text-sm font-bold mb-4 text-gray-900 border border-red-500">
+              Get The App
+            </h3>
             <ul className="space-y-1">
               {sections[3].links.map((link) => (
                 <li key={link}>
@@ -148,11 +168,13 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Partners */}
           <div style={{ gridArea: "partners" }}>
-            <h3 className="text-sm font-bold mb-4 text-gray-900">Tripadvisor Sites</h3>
+            <h3 className="text-sm font-bold mb-4 text-gray-900">
+              Tripadvisor Sites
+            </h3>
             <ul className="space-y-2">
               {sections[4].links.map((text, idx) => {
                 // split at last word for the link
@@ -172,7 +194,7 @@ const Footer = () => {
           </div>
 
           {/* Legal */}
-          <div style={{ gridArea: "legal" }} className="text-sm text-gray-500">
+          <div style={{ gridArea: "legal" }} className="text-sm text-gray-500 -space-y-1">
             <div className="flex items-center gap-4 mb-4">
               <img
                 src="https://static.tacdn.com/img2/brand_refresh/Tripadvisor_logoset_solid_green.svg"
@@ -183,18 +205,36 @@ const Footer = () => {
             </div>
             <div className="flex flex-wrap gap-4 mb-4">
               {legalLinks.map((link) => (
-                <Link key={link} to="#" className="text-sm font-medium underline tracking-tight text-tripadvisor-darkGray">
+                <Link
+                  key={link}
+                  to="#"
+                  className="text-[16px] font-medium underline tracking-tight text-black"
+                >
                   {link}
                 </Link>
               ))}
             </div>
+            <div
+              style={{ gridArea: "legal" }}
+              className="text-sm text-gray-500"
+            >
+              <p className="text-xs">
+                This is the version of our website addressed to speakers of
+                English in India. . If you are a resident of another country or
+                region, please select the appropriate version of Tripadvisor for
+                your country or region in the drop-down menu.
+              </p>
+            </div>
           </div>
 
           {/* Pickers */}
-          <div style={{ gridArea: "pickers" }} className="flex flex-col sm:flex-row gap-4">
-            <Select defaultValue="usd">
+          <div
+            style={{ gridArea: "pickers" }}
+            className="flex flex-col sm:flex-row gap-4"
+          >
+            <Select defaultValue="inr">
               <SelectTrigger className="w-[160px] border-2 border-gray-300 rounded-xl">
-                <SelectValue placeholder="$ USD" />
+                <SelectValue placeholder="$ INR" />
               </SelectTrigger>
               <SelectContent>
                 {currencies.map(({ label, value }) => (
@@ -204,9 +244,9 @@ const Footer = () => {
                 ))}
               </SelectContent>
             </Select>
-            <Select defaultValue="us">
+            <Select defaultValue="in">
               <SelectTrigger className="w-[180px] border-2 border-gray-300 rounded-xl">
-                <SelectValue placeholder="United States" />
+                <SelectValue placeholder="India" />
               </SelectTrigger>
               <SelectContent>
                 {countries.map(({ label, value }) => (
@@ -219,12 +259,21 @@ const Footer = () => {
           </div>
 
           {/* Social */}
-          <div style={{ gridArea: "social" }} className="flex items-center gap-4">
-            {[Facebook, Twitter, Instagram, Youtube].map((Icon, idx) => (
-              <a key={idx} href="#" className="text-gray-600 hover:text-gray-900">
-                <Icon className="h-5 w-5" />
-              </a>
-            ))}
+          <div
+            style={{ gridArea: "social" }}
+            className="flex items-center justify-end gap-4 "
+          >
+            {[Facebook, Twitter, Pintrest,Instagram, Youtube, Tiktok ].map(
+              (Icon, idx) => (
+                <a
+                  key={idx}
+                  href="#"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  <Icon size={24} className="h-5 w-5" />
+                </a>
+              )
+            )}
           </div>
         </div>
       </div>

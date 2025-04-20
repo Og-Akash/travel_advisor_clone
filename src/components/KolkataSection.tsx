@@ -19,7 +19,7 @@ const KolkataSection = () => {
       <Carousel
         opts={{
           align: "start",
-          slidesToScroll:4
+          slidesToScroll:"auto"
         }}
         className="w-full max-w-6xl mx-auto relative"
       >
@@ -27,7 +27,7 @@ const KolkataSection = () => {
           {tours.map((tour, index) => (
             <CarouselItem
               key={index}
-              className="basis-1/4 pl-4" // 4 cards visible
+             className="basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4 pl-2 md:pl-4"
             >
               <Card {...tour} />
             </CarouselItem>
