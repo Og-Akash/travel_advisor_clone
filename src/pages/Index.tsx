@@ -12,6 +12,7 @@ import Article from "@/components/Article";
 import Advatisements from "@/components/Advatisements";
 import Sponsour from "@/components/Sponsour";
 import ChatSupport from "@/components/ChatSupport";
+import Globe from "@/components/Globe";
 
 const Index = () => {
   return (
@@ -22,6 +23,7 @@ const Index = () => {
         <SearchSection />
         <main className="flex-grow space-y-16">
           <HeroBanner />
+          <Globe />
           <Article
             image="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/ec/17/e3/caption.jpg?w=400&h=400&s=1&cx=4846&cy=1237&chk=v1_7e9a38335d35a46edbee"
             tag="In partnership with CESAR"
